@@ -1,0 +1,25 @@
+/** @mainpage Myproject landing page
+ *
+ * This is an example landing page.
+ * - Example usage of a @subpage some_sub_page.
+ * - You can find more information about module1 at @ref module1.hpp.
+ *
+ */
+
+/** @page some_sub_page Some subpage
+ *
+ * You can find the tests in @ref test
+ *
+ * Here's an example UML diagram
+ *
+ * @startuml
+ * actor user
+ * participant system
+ * autoactivate on
+ * hide footbox
+ *
+ * user -> system: Press button
+ * system --> user: Shows info
+ * @enduml
+ *
+ */
