@@ -17,7 +17,7 @@ PROJECT(${PROJECT_NAME})
 # Setup the paths
 SET(TOOLSPATH ${ARDUINOPATH}/hardware/tools/)  # path location for Teensy Loader, teensy_post_compile and teensy_reboot
 SET(COMPILERPATH ${TOOLSPATH}/arm/bin)
-SET(COREPATH ${TEENSYPATH}/cores/teensy4)
+SET(COREPATH ${CMAKE_SOURCE_DIR}/lib/teensy/teensy4/)
 
 # Flags for compiling C and C++-code
 SET(CPUOPTIONS "-mcpu=cortex-m7 -mfloat-abi=hard -mfpu=fpv5-d16 -mthumb")
