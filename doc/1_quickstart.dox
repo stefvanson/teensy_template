@@ -1,0 +1,24 @@
+/*!
+\mainpage Quick start
+
+\section tools Installing the required tools
+
+-# Install the following using your package manager:
+
+   `sudo dnf install doxygen valgrind gcovr g++ plantuml`
+
+   \note I'm using Fedora, but probably replacing `dnf` by the package manager
+   for your Linux distro, e.g. `apt-get` for Ubuntu, you can do the same.
+
+\section Building
+
+-# Run `make` for building the binary for the target (Teensy 4.0).
+-# Run `make tests` for building and running the tests (not working yet).
+-# Run `make docs` for generating the project documentation in html.
+
+\section Deploying
+
+Run `make upload` to start the Teensy loader program. More info on the Teensy
+website.
+
+*/
