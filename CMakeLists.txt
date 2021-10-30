@@ -15,7 +15,7 @@ SET(PROJECT_NAME myproject)
 PROJECT(${PROJECT_NAME})
 
 # Setup the paths
-SET(TOOLSPATH ${ARDUINOPATH}/hardware/tools/)  # path location for Teensy Loader, teensy_post_compile and teensy_reboot
+SET(TOOLSPATH ${ARDUINOPATH}/hardware/tools/)  # location for Teensy Loader, teensy_post_compile and teensy_reboot
 SET(COMPILERPATH ${TOOLSPATH}/arm/bin)
 SET(COREPATH ${CMAKE_SOURCE_DIR}/lib/teensy/teensy4/)
 
@@ -50,24 +50,25 @@ SET(CMAKE_CXX_COMPILER ${COMPILERPATH}/arm-none-eabi-g++)
 SET(OBJCOPY ${COMPILERPATH}/arm-none-eabi-objcopy)
 SET(SIZE ${COMPILERPATH}/arm-none-eabi-size)
 
-# Gather all the source files
+# Add all the source files from src
+FILE(GLOB_RECURSE SOURCE_CFILES "${CMAKE_SOURCE_DIR}/src/*.c")
+FILE(GLOB_RECURSE SOURCE_CPPFILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+SET(${PROJECT_NAME}_SOURCES ${SOURCE_CFILES} ${SOURCE_CPPFILES})
+INCLUDE_DIRECTORIES(src)
+
+# Add teensy library files
 FILE(GLOB_RECURSE TEENSY_CFILES "${COREPATH}/*.c")
 FILE(GLOB_RECURSE TEENSY_CPPFILES "${COREPATH}/*.cpp")
 LIST(REMOVE_ITEM TEENSY_CPPFILES "${COREPATH}/main.cpp")
 SET(TEENSYLIB_FILES ${TEENSY_CFILES} ${TEENSY_CPPFILES})
-FILE(GLOB_RECURSE SOURCE_CFILES "${CMAKE_SOURCE_DIR}/src/*.c")
-FILE(GLOB_RECURSE SOURCE_CPPFILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
-SET(SOURCE_FILES ${SOURCE_CFILES} ${SOURCE_CPPFILES})
-
-# Set the include directories
+LIST(APPEND ${PROJECT_NAME}_SOURCES ${TEENSYLIB_FILES})
 INCLUDE_DIRECTORIES(${COREPATH})
-INCLUDE_DIRECTORIES(src)
 
 #************************************************************************
 # Targets
 #************************************************************************
 # build the .elf file
-ADD_EXECUTABLE(${PROJECT_NAME}.elf ${SOURCE_FILES} ${TEENSYLIB_FILES})
+ADD_EXECUTABLE(${PROJECT_NAME}.elf ${${PROJECT_NAME}_SOURCES})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}.elf ${LIBFLAGS})
 
 # build the .hex file from the .elf file (default target)
