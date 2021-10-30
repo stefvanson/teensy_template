@@ -5,7 +5,7 @@
 
 -# Install the following using your package manager:
 
-   `sudo dnf install doxygen valgrind gcovr g++ plantuml`
+   `sudo dnf install doxygen g++ plantuml`
 
    \note I'm using Fedora, but probably replacing `dnf` by the package manager
    for your Linux distro, e.g. `apt-get` for Ubuntu, you can do the same.
